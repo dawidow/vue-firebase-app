@@ -4,7 +4,7 @@
 				<router-link to="/">
 					<img class="nav__logo" src="../assets/logo.png" alt="Logotype">
 				</router-link>
-				<router-link class="nav__link" to="/">&larr; Back to home-page</router-link>
+				<router-link class="nav__link" to="/">&larr; Back to the home page</router-link>
 		</nav>
 		<section class="login">
 			<form class="form">
@@ -24,6 +24,15 @@ export default {
 	methods: {
 		send(e) {
 			e.preventDefault();
+			let toast = this.$toasted.show("Succes! You logged in!", {
+					theme: "outline",
+					position: "bottom-right",
+					duration : 5000
+			});
+
+			setTimeout(() => {
+				toast = null;
+			}, 3000);
 		}
 	}
 }
@@ -142,7 +151,8 @@ export default {
 				&__link {
 					text-decoration: none;
 					color: #5759ee;
-					margin: 10px 0;
+					margin: 20px 0;
+					width: 310px;
 					font-weight: bold;
 					transition: all .2s ease-in-out;
 
@@ -154,9 +164,9 @@ export default {
 						content: "";
 						position: absolute;
 						margin: 0 auto;
-						width: 60%;
+						width: 305px;
 						height: 2px;
-						bottom: 15px;
+						bottom: 20px;
 						left: 0;
 						right: 0;
 						background-color: #4143c2;
