@@ -6,7 +6,7 @@
 				<p class="header__logo-name">teamwall</p>
 			</div>
 			<div class="header__buttons">
-				<router-link class="header__login" to="/">Login</router-link>
+				<router-link class="header__login" to="/login">Login</router-link>
 				<router-link class="header__register" to="/">Try for free!</router-link>
 			</div>
 		</header>
@@ -38,7 +38,7 @@ export default {
 		justify-content: space-between;
 		align-items: center;
 		width: 90%;
-		height: 20vh;
+		height: 10vh;
 		margin: 0 auto;
 
 		&__logotype {
@@ -90,7 +90,7 @@ export default {
 
 	.main {
 		width: 90%;
-		height: 70vh;
+		height: 80vh;
 		margin: 0 auto;
 		position: relative;
 		display: flex;
@@ -175,7 +175,8 @@ export default {
 				height: 427px;
 				position: absolute;
 				right: 20px;
-				top: 0;
+				top: 10vh;
+				bottom: 0;
 				z-index: -1;
 			}
 
