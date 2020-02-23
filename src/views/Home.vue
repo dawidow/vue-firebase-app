@@ -7,13 +7,13 @@
 			</div>
 			<div class="header__buttons">
 				<router-link class="header__login" to="/login">Login</router-link>
-				<router-link class="header__register" to="/">Try for free!</router-link>
+				<router-link class="header__register" to="/register">Try for free!</router-link>
 			</div>
 		</header>
 		<section class="main">
 			<h1 class="main__intro">Your wall full of ideas</h1>
 			<p class="main__description">Share your ideas with the whole team. Try our solution for free to exchange ideas in your project.</p>
-			<router-link class="main__register" to="/">Try for free!</router-link>
+			<router-link class="main__register" to="/register">Try for free!</router-link>
 		</section>
 
 		<footer class="footer">
@@ -80,6 +80,8 @@ export default {
 				font-weight: bold;
 				box-shadow: 0 1px 4px 0 rgba(0,108,91,.24);
 				transition: all .2s ease-in-out;
+				cursor: pointer;
+
 
 				&:hover {
 					background-color: #43b1ab;
@@ -118,6 +120,7 @@ export default {
 			font-weight: bold;
 			box-shadow: 0 1px 4px 0 rgba(0,108,91,.24);
 			transition: all .2s ease-in-out;
+			cursor: pointer;
 
 			&:hover {
 				background-color: #43b1ab;
