@@ -10,7 +10,7 @@
 			<form class="form">
 					<img src="../assets/avatar.png" alt="" class="form__avatar">
 					<h2>Log in to your account</h2>
-					<input class="form__input" type="email" id="email" placeholder="Type your e-mail" v-model="mail" novalidate :class="{ 'has-error': $v.mail.$dirty && $v.mail.$invalid }" @input="$v.mail.$touch()">
+					<input class="form__input" type="email" id="email" autocomplete="off" placeholder="Type your e-mail" v-model="mail" novalidate :class="{ 'has-error': $v.mail.$dirty && $v.mail.$invalid }" @input="$v.mail.$touch()">
 					<p class="form__input-hint" v-if="$v.mail.$error">The field is not correct.</p>
 					<input class="form__input" type="password"  id="password" placeholder="Type your password" v-model="password" :class="{ 'has-error': $v.password.$dirty && $v.password.$invalid }" @input="$v.password.$touch()">
 					<p class="form__input-hint" v-if="$v.password.$dirty && !$v.password.required">The field is required.</p>

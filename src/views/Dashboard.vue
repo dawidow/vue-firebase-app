@@ -206,7 +206,7 @@ export default {
 					left: 50%;
 					transform: translate(-50%, -120%);
 					font-size: 2.5em;
-					color: rgba(255, 255, 255, 0.4);
+					color: rgba(255, 255, 255, 0.3);
 					z-index: 1;
 				}
 			}
