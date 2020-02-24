@@ -3,12 +3,15 @@
 		<h3 class="modal__info">Add new post</h3>
 			<form class="form">
 				<button class="form__close-btn" @click="hideModal"></button>
-				<input type="text" class="form__input" placeholder="Title of the post" v-model="title">
-				<p class="form__input-hint">Field is required.</p>
-				<input type="text" class="form__input" placeholder="Author name" v-model="author">
-				<p class="form__input-hint">Field is required.</p>
-				<input type="text" class="form__input" placeholder="Post description" v-model="description">
-				<p class="form__input-hint">Field is required.</p>
+				<input type="text" class="form__input" placeholder="Title of the post" :class="{ 'has-error': $v.title.$dirty && $v.title.$invalid }" @input="$v.title.$touch()" v-model="title">
+				<p class="form__input-hint" v-if="$v.title.$dirty && !$v.title.required">The field is required.</p>
+				<p class="form__input-hint" v-if="$v.title.$dirty && !$v.title.minLength">The field must contain a minimum of 5 characters.</p>
+				<input type="text" class="form__input" placeholder="Author name" :class="{ 'has-error': $v.author.$dirty && $v.author.$invalid }" @input="$v.author.$touch()" v-model="author">
+				<p class="form__input-hint" v-if="$v.author.$dirty && !$v.author.required">The field is required.</p>
+				<p class="form__input-hint" v-if="$v.author.$dirty && !$v.author.minLength">The field must contain a minimum of 5 characters.</p>
+				<input type="text" class="form__input" placeholder="Post description" :class="{ 'has-error': $v.description.$dirty && $v.description.$invalid }" @input="$v.description.$touch()" v-model="description">
+				<p class="form__input-hint" v-if="$v.description.$dirty && !$v.description.required">The field is required.</p>
+				<p class="form__input-hint" v-if="$v.description.$dirty && !$v.description.minLength">The field must contain a minimum of 20 characters.</p>
 				<button type="submit" @click="send" class="form__btn" :disabled="$v.$invalid">Add new post</button>
 			</form>
 	</div>

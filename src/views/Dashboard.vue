@@ -18,6 +18,15 @@
 				<Posts v-for="(post, index) in posts" :key="post.id" :post="post"/>
 			</div>
 		</section>
+		<section class="summary">
+			<h3 class="summary__info">Summary of your wall</h3>
+			<div class="summary__box">
+				<p class="summary__text">Number of posts <p class="summary__text--number">{{ posts.length }}</p></p>
+			</div>
+			<div class="summary__box">
+				<p class="summary__text">Current date <p class="summary__text--number">{{ getDate }}</p></p>
+			</div>
+		</section>
 		<div @click="openModal" class="add-btn">Add new post.</div>
 		<Modal v-if="modalIsOpen === true" @closeModal="closeModal"/>
 	</div>
@@ -38,6 +47,16 @@ export default {
 		return {
 			posts: [],
 			modalIsOpen: false,
+		}
+	},
+	computed: {
+		getDate() {
+			let today = new Date();
+			let dd = String(today.getDate()).padStart(2, '0');
+			let mm = String(today.getMonth() + 1).padStart(2, '0');
+			let yyyy = today.getFullYear();
+
+			return today = mm + '/' + dd + '/' + yyyy;
 		}
 	},
 	methods: {
@@ -70,6 +89,7 @@ export default {
 .dashboard {
 	min-height: 100vh;
 	width: 100%;
+	padding-bottom: 70px;
 	background-image: linear-gradient(to bottom, #fff 0%, #f7f7f7 99%, #f7f7f7 100%);
 
 	.nav {
@@ -144,9 +164,60 @@ export default {
 		box-shadow: 0 1px 4px 0 rgba(0,108,91,.24);
 		transition: all .2s ease-in-out;
 		cursor: pointer;
+		z-index: 4;
 
 		&:hover {
 			background-color: #43b1ab;
+		}
+	}
+
+	.summary {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 90%;
+		margin: 10px auto;
+
+		&__info {
+			color: rgb(75, 75, 75);
+		}
+
+		&__box {
+			width: 95%;
+			padding: 30px 0;
+			margin: 10px 0;
+			background-image: linear-gradient(to right bottom, #87eeeb 0%, #369c9c 99%, #369c9c 100%);
+			border-radius: 10px;
+			font-weight: bold;
+			position: relative;
+			overflow: hidden;
+			color: #fff;
+			font-size: 1.2em;
+			box-shadow: 0 1px 4px 0 rgba(0,108,91,.24);
+
+			.summary__text {
+				position: relative;
+				z-index: 2;
+				font-weight: bold;
+
+				&--number {
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -120%);
+					font-size: 2.5em;
+					color: rgba(255, 255, 255, 0.4);
+					z-index: 1;
+				}
+			}
+		}
+
+		.summary__box:nth-child(odd) {
+				background-image: linear-gradient(to right bottom, #a7b0f3 0%, #5556ee 99%, #5556ee 100%);
+
+				&__text--number {
+					color: rgba(255, 255, 255, 0.2);
+				}
 		}
 	}
 }
@@ -156,6 +227,23 @@ export default {
 		&__welcome {
 			width: 100%;
 			text-align: left !important;
+		}
+	}
+
+	.summary {
+		display: flex;
+		width: 90%;
+		flex-direction: row !important;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+
+		&__info {
+			flex-basis: 100%;
+		}
+
+		&__box {
+			flex-basis: 49%;
 		}
 	}
 }

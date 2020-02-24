@@ -121,6 +121,7 @@ export default {
 			box-shadow: 0 1px 4px 0 rgba(0,108,91,.24);
 			transition: all .2s ease-in-out;
 			cursor: pointer;
+			z-index: 4;
 
 			&:hover {
 				background-color: #43b1ab;
