@@ -31,6 +31,7 @@ export default {
 	&__title, &__author, &__description, &__details {
 		text-align: left;
 		width: 95%;
+		padding: 5px;
 		margin: 5px 0 5px 30px;
 	}
 

@@ -56,7 +56,7 @@ export default {
 			let mm = String(today.getMonth() + 1).padStart(2, '0');
 			let yyyy = today.getFullYear();
 
-			return today = mm + '/' + dd + '/' + yyyy;
+			return today = `${dd}.${mm}.${yyyy}`;
 		}
 	},
 	methods: {
