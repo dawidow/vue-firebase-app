@@ -13,7 +13,7 @@
 				</div>
 		</nav>
 		<section class="main">
-			<h2 class="main__welcome">Welcome .. on your dashboard!</h2>
+			<h2 class="main__welcome">Welcome on your dashboard!</h2>
 			<div class="main__wall">
 				<Posts v-for="(post, index) in posts" :key="post.id" :post="post"/>
 			</div>
