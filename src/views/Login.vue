@@ -9,23 +9,47 @@
 		<section class="login">
 			<form class="form">
 					<img src="../assets/avatar.png" alt="" class="form__avatar">
-					<input class="form__input" type="email" id="email" placeholder="Type your e-mail">
-					<input class="form__input" type="password"  id="password" placeholder="Type your password">
-					<button type="submit" @click="send" class="form__btn">Log in</button>
-					<router-link to="/register" class="form__link">You don't have an account yet? Sign up!.</router-link>
+					<input class="form__input" type="email" id="email" placeholder="Type your e-mail" v-model="mail" novalidate :class="{ 'has-error': $v.mail.$dirty && $v.mail.$invalid }" @input="$v.mail.$touch()">
+					<p class="form__input-hint" v-if="$v.mail.$dirty && $v.mail.$invalid">The field is not correct.</p>
+					<input class="form__input" type="password"  id="password" placeholder="Type your password" v-model="password" :class="{ 'has-error': $v.password.$dirty && $v.password.$invalid }" @input="$v.password.$touch()">
+					<p class="form__input-hint" v-if="$v.password.$dirty && !$v.password.required">The field is required.</p>
+					<p class="form__input-hint" v-if="$v.password.$dirty && !$v.password.minLength">The password must contain a minimum of 5 characters.</p>
+					<button type="submit" @click="send" class="form__btn" :disabled="$v.$invalid">Log in</button>
+					<router-link to="/register" class="form__link">You don't have an account yet? Sign up!</router-link>
 			</form>
 		</section>
 	</div>
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate';
+import { required, minLength, email } from 'vuelidate/lib/validators';
+
 export default {
 	name: 'Login',
+	mixins: [ validationMixin ],
+	data() {
+		return {
+			mail: '',
+			password: ''
+		}
+	},
+	validations: {
+		mail: {
+			required,
+			email
+		},
+		password: {
+			required,
+			minLength: minLength(5)
+		}
+	},
 	methods: {
 		send(e) {
 			e.preventDefault();
 			let toast = this.$toasted.show("Succes! You logged in!", {
-					theme: "outline",
+					theme: "bubble",
+					type: 'info',
 					position: "bottom-right",
 					duration : 5000
 			});
@@ -68,7 +92,7 @@ export default {
 
 	.login {
 		min-height: 90vh;
-		width: 95%;
+		width: 90%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -125,12 +149,25 @@ export default {
 					padding: 12px;
 					border: none;
 					border-radius: 5px;
+
+					&.has-error {
+						border: 1px solid red;
+					}
+				}
+
+				&__input-hint {
+					margin: 5px 0 0;
+					color: red;
+					text-align: left;
+					font-size: 14px;
+					width: 90%;
 				}
 
 				&__btn {
 					display: block;
 					margin: 10px auto;
 					padding: 10px 19px;
+					border: none;
 					border-radius: 5px;
 					background-color: #5ad0ca;
 					color: #fff;
@@ -143,6 +180,16 @@ export default {
 					text-transform: uppercase;
 					outline: none;
 
+					&:disabled, &[disabled] {
+						cursor: default;
+						background-color: #dfdfdf;
+						color: rgb(61, 61, 61);
+
+						&:hover {
+							background-color: #dfdfdf;
+						}
+					}
+
 					&:hover {
 						background-color: #43b1ab;
 					}
@@ -152,7 +199,7 @@ export default {
 					text-decoration: none;
 					color: #5759ee;
 					margin: 20px 0;
-					width: 310px;
+					width: 340px;
 					font-weight: bold;
 					transition: all .2s ease-in-out;
 
@@ -166,7 +213,7 @@ export default {
 						margin: 0 auto;
 						width: 305px;
 						height: 2px;
-						bottom: 20px;
+						bottom: 25px;
 						left: 0;
 						right: 0;
 						background-color: #4143c2;
