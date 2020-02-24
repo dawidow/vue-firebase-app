@@ -27,6 +27,10 @@ export default {
 		margin: 5px auto;
 	}
 
+	&__author {
+		color: #9c9c9c;
+	}
+
 	&__description {
 		margin: 25px auto 5px;
 	}

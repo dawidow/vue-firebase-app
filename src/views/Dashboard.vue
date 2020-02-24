@@ -19,7 +19,7 @@
 			</div>
 		</section>
 		<div @click="openModal" class="add-btn">Add new post.</div>
-		<Modal v-if="modalIsOpen === true"/>
+		<Modal v-if="modalIsOpen === true" @closeModal="closeModal"/>
 	</div>
 </template>
 
@@ -37,6 +37,15 @@ export default {
 	data() {
 		return {
 			posts: [],
+			modalIsOpen: false,
+		}
+	},
+	methods: {
+		openModal() {
+			this.modalIsOpen = true;
+		},
+		closeModal() {
+			this.modalIsOpen = false;
 		}
 	},
 	created() {
