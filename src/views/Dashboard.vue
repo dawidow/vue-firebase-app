@@ -5,7 +5,7 @@
 					<img class="nav__logo" src="../assets/logo.png" alt="Logotype">
 				</router-link>
 				<div class="nav__right-side">
-					<router-link class="nav__link" to="/" @click="logout">Logout</router-link>
+					<button class="nav__link" @click="logout">Logout</button>
 					<div class="nav__hello">
 						<p class="nav__name">Hello name</p>
 						<img src="../assets/avatar.png" alt="avatar" class="nav__avatar">
@@ -72,7 +72,7 @@ export default {
 		logout() {
 			firebase.auth().signOut()
 				.then(() => {
-					this.$router.push('/')
+					this.$router.push('/login')
 				})
 		}
 	},
@@ -123,12 +123,17 @@ export default {
 				.nav__link {
 					margin-right: 10px;
 					text-decoration: none;
-					color: #000;
+					color: #fff;
 					transition: all .2s ease-in-out;
 					font-weight: bold;
+					padding: 10px 15px;
+					background-color: #5556ee;
+					border: none;
+					border-radius: 5px;
+					cursor: pointer;
 
 						&:hover {
-							color: #5ad0ca;
+							background-color: #3939c0;
 						}
 				}
 
