@@ -5,7 +5,7 @@
 		<p class="post__description">{{ post.description }}</p>
 		<router-link  :to="{ path: '/dashboard/' + post.post_id, params: { post_id: post.title } }" class="post__details">See details →</router-link>
 		<div class="post__icons">
-			<router-link to="" class="post__edit">&#9998; edit</router-link>
+			<router-link :to="{ path: '/dashboard/edit/' + post.post_id, params: { post_id: post.title } }" class="post__edit">&#9998; edit</router-link>
 		</div>
 	</div>
 </template>

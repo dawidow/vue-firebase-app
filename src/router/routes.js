@@ -3,6 +3,7 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Dashboard from '../views/Dashboard.vue'
 import SeeDetails from '../views/SeeDetails.vue'
+import PostEdit from '../views/PostEdit.vue'
 
 export default [
 	{ path: '/', name: 'Home', component: Home },
@@ -10,5 +11,5 @@ export default [
 	{ path: '/register', name: 'Register', component: Register },
 	{ path: '/dashboard', name: 'Dashboard', component: Dashboard },
 	{ path: '/dashboard/:post_id', name: 'SeeDetails', component: SeeDetails },
-	// { path: '/dashboard/edit/:post_id' }
+	{ path: '/dashboard/edit/:post_id', name: 'PostEdit', component: PostEdit }
 ]
