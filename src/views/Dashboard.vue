@@ -5,7 +5,7 @@
 					<img class="nav__logo" src="../assets/logo.png" alt="Logotype">
 				</router-link>
 				<div class="nav__right-side">
-					<router-link class="nav__link" to="/">Logout</router-link>
+					<router-link class="nav__link" to="/" @click="logout">Logout</router-link>
 					<div class="nav__hello">
 						<p class="nav__name">Hello name</p>
 						<img src="../assets/avatar.png" alt="avatar" class="nav__avatar">
@@ -13,7 +13,7 @@
 				</div>
 		</nav>
 		<section class="main">
-			<h2 class="main__welcome">Welcome on your dashboard!</h2>
+			<h2 class="main__welcome">Welcome {{ user }} on your dashboard!</h2>
 			<div class="main__wall">
 				<Posts v-for="(post, index) in posts" :key="post.id" :post="post"/>
 			</div>
@@ -37,6 +37,8 @@ import db from '../components/firebaseInit.js';
 import Posts from '../components/Posts';
 import Modal from '../components/Modal';
 
+import firebase from 'firebase';
+
 export default {
 	name: 'Dashboard',
 	components: {
@@ -47,6 +49,7 @@ export default {
 		return {
 			posts: [],
 			modalIsOpen: false,
+			user: null,
 		}
 	},
 	computed: {
@@ -65,6 +68,12 @@ export default {
 		},
 		closeModal() {
 			this.modalIsOpen = false;
+		},
+		logout() {
+			firebase.auth().signOut()
+				.then(() => {
+					this.$router.push('/')
+				})
 		}
 	},
 	created() {
@@ -80,6 +89,9 @@ export default {
 				this.posts.push(data);
 			})
 		})
+		if(firebase.auth().currentUser) {
+			this.user = firebase.auth().currentUser.email
+		}
 	}
 }
 </script>
