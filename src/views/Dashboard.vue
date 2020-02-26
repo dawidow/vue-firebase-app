@@ -71,7 +71,7 @@ export default {
 		db.collection('posts').get().then(querySnapshot => {
 			querySnapshot.forEach(doc => {
 				const data = {
-					'id': doc.id,
+					'post_id': doc.data().post_id,
 					'author': doc.data().author,
 					'createdAt': doc.data().createdAt,
 					'description': doc.data().description,

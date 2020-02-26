@@ -12,16 +12,16 @@
 					</div>
 				</div>
 		</nav>
-		<router-link  class="details__back" to="/dashboard">&larr; Back to dashboard</router-link>
 		<div class="details__item">
 			<h3 class="details__title">{{ title }}</h3>
 			<p class="details__author">{{ author }}</p>
 			<p class="details__description">{{ description }}</p>
-			<div class="details__icons">
-				<router-link to='' class="details__edit">&#9998; edit</router-link>
-				<button class="details__remove" @click="removePost">&#10007; delete</button>
-			</div>
 		</div>
+		<div class="details__icons">
+			<router-link to='' class="details__edit" @click="test">&#9998; edit</router-link>
+			<button class="details__remove" @click="removePost">&#10007; delete</button>
+		</div>
+		<router-link  class="details__back" to="/dashboard">&larr; Back to dashboard</router-link>
 	</div>
 </template>
 
@@ -67,8 +67,14 @@ export default {
 				})
 		},
 		removePost() {
-			if(confirm('Are you sure?')) {
-				db.collection('posts').where('post_id', '==', this.$route.params)
+			if(confirm("Are you sure about your decision? This step can't be reversed")) {
+				db.collection('posts').where('post_id', '==', this.$route.params.post_id).get()
+					.then(querySnapshot => {
+						querySnapshot.forEach(doc => {
+							doc.ref.delete()
+							this.$router.push('/dashboard');
+						})
+					})
 			}
 		}
 	}
@@ -79,6 +85,8 @@ export default {
 
 .details {
 	width: 100%;
+	min-height: 100vh;
+	background-image: linear-gradient(to bottom, #fff 0%, #f7f7f7 99%, #f7f7f7 100%);
 
 	.nav {
 		display: flex;
@@ -130,12 +138,29 @@ export default {
 	}
 
 	.details__item {
-		background: #fff;
+		padding: 30px;
+		width: 95%;
+		margin: 30px auto;
+		background-color: #fff;
+		box-shadow: 0 1px 4px 0 rgba(0,108,91,.24);
+		border-radius: 10px;
+
+		.details__title {
+			margin: 0;
+		}
+
+		.details__author {
+			margin: 0;
+		}
+
+		.details__description {
+			margin: 0;
+		}
 	}
 
 	&__back {
 		text-decoration: none;
-		color: #000;
+		color: #5556ee;
 		transition: all .2s ease-in-out;
 
 		&:hover {
@@ -148,6 +173,7 @@ export default {
 	display: flex;
 	justify-content: center;
 	bottom: 10px;
+	margin-bottom: 40px;
 	left: 0;
 	right: 0;
 
@@ -190,6 +216,14 @@ export default {
 			&:hover {
 				color: #3939c0;
 			}
+		}
+	}
+}
+
+@media screen and (min-width: 980px) {
+	.details{
+		&__item {
+			width: 70%;
 		}
 	}
 }

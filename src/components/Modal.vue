@@ -3,6 +3,8 @@
 		<h3 class="modal__info">Add new post</h3>
 			<form class="form">
 				<button class="form__close-btn" @click="hideModal"></button>
+				<input type="text" class="form__input" placeholder="Post ID" :class="{ 'has-error': $v.post_id.$dirty && $v.post_id.$invalid }" @input="$v.post_id.$touch()" v-model="post_id">
+				<p class="form__input-hint" v-if="$v.title.$dirty && !$v.title.required">The field is required.</p>
 				<input type="text" class="form__input" placeholder="Title of the post" :class="{ 'has-error': $v.title.$dirty && $v.title.$invalid }" @input="$v.title.$touch()" v-model="title">
 				<p class="form__input-hint" v-if="$v.title.$dirty && !$v.title.required">The field is required.</p>
 				<p class="form__input-hint" v-if="$v.title.$dirty && !$v.title.minLength">The field must contain a minimum of 5 characters.</p>
@@ -21,11 +23,14 @@
 import { validationMixin } from 'vuelidate';
 import { required, minLength } from 'vuelidate/lib/validators';
 
+import db from './firebaseInit';
+
 export default {
 	name: 'Modal',
 	mixins: [ validationMixin ],
 	data() {
 		return {
+			post_id: '',
 			title: '',
 			author: '',
 			description: '',
@@ -35,6 +40,9 @@ export default {
 		title: {
 			required,
 			minLength: minLength(5)
+		},
+		post_id: {
+			required,
 		},
 		author: {
 			required,
@@ -48,6 +56,18 @@ export default {
 	methods: {
 		send(e) {
 			e.preventDefault();
+
+			db.collection('posts').add({
+				post_id: this.post_id,
+				title: this.title,
+				author: this.author,
+				description: this.description
+			})
+			.then(docRef => {
+				this.$router.go('/dashboard')
+			})
+			.catch(err => console.log(err))
+
 			let toast = this.$toasted.show("Succes! Your post was created!!", {
 					theme: "bubble",
 					type: 'info',
