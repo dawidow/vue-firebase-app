@@ -3,18 +3,19 @@
 		<h3 class="post__title"> {{  post.title }}</h3>
 		<p class="post__author">{{ post.author }}</p>
 		<p class="post__description">{{ post.description }}</p>
-		<router-link  to="" class="post__details">See details →</router-link>
+		<router-link  to='' class="post__details">See details →</router-link>
 		<div class="post__icons">
-			<router-link to="" class="post__icon post__edit">&#9998; edit</router-link>
-			<router-link to="" class="post__icon post__remove">&#10007; delete</router-link>
+			<router-link to='' class="post__edit">&#9998; edit</router-link>
 		</div>
 	</div>
 </template>
 
 <script>
+import db from '../components/firebaseInit.js';
+
 export default {
 	name: 'Posts',
-	props: [ 'post']
+	props: [ 'post'],
 }
 </script>
 
@@ -68,6 +69,19 @@ export default {
 		left: 0;
 		right: 0;
 
+		.post__edit {
+			text-decoration: none;
+			color: #5556ee;
+			font-size: 16px;
+			font-weight: bold;
+			margin: 0 10px;
+			transition: all .2s ease-in-out;
+
+			&:hover {
+				color: #3939c0;
+			}
+		}
+
 		.post__icon {
 			text-decoration: none;
 			color: #5556ee;
@@ -79,6 +93,12 @@ export default {
 				color: #3939c0;
 			}
 		}
+	}
+}
+
+@media screen and (min-width: 980px) {
+	.post__icons {
+		justify-content: flex-end;
 	}
 }
 
