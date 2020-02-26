@@ -12,6 +12,7 @@
 					</div>
 				</div>
 		</nav>
+		<h3 class="edit__intro">Post details</h3>
 		<div class="details__item">
 			<h3 class="details__title">{{ title }}</h3>
 			<p class="details__author">{{ author }}</p>

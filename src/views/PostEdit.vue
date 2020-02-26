@@ -12,11 +12,12 @@
 					</div>
 				</div>
 		</nav>
+		<h3 class="edit__intro">Edit current post</h3>
 		<form class="edit__item">
-			<input class="edit__title-input" placeholder="Type title" type="text" v-model="title">
-			<input class="edit__author-input" placeholder="Type author" type="text" v-model="author">
-			<input class="edit__description-input" placeholder="Type description" type="text" v-model="description">
-			<input type="submit" @click="updatePost" class="edit__update" value="save">
+			<input class="edit__title-input edit__input" placeholder="Type title" type="text" v-model="title">
+			<input class="edit__author-input edit__input" placeholder="Type author" type="text" v-model="author">
+			<textarea class="edit__description-input edit__input" placeholder="Type description" type="text" v-model="description"></textarea>
+			<input type="submit" @click="updatePost" class="edit__update" value="Update current post">
 		</form>
 		<router-link  class="edit__back" to="/dashboard">&larr; Back to dashboard</router-link>
 	</div>
@@ -143,9 +144,36 @@ export default {
 	&__item {
 		width: 95%;
 		margin: 0 auto;
+		background-color: #fff;
+		display: flex;
+		flex-direction: column;
+
+		.edit__input {
+			max-width: 90%;
+			width: 500px;
+			margin: 10px auto;
+			padding: 10px;
+			border-radius: 5px;
+			border: none;
+			background-color: #f7f7f7;
+		}
+
+		textarea {
+			resize: none;
+			height: 300px;
+		}
 
 		.edit__update {
-			padding: 5px;
+			padding: 10px 15px;
+			border: none;
+			color: #fff;
+			margin: 0 auto 30px;
+			font-weight: bold;
+			background-color: #5556ee;
+			border-radius: 5px;
+			max-width: 90%;
+			width: 500px;
+			cursor: pointer;
 		}
 	}
 
