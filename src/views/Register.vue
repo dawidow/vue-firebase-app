@@ -26,6 +26,8 @@
 import { validationMixin } from 'vuelidate';
 import { required, minLength, email } from 'vuelidate/lib/validators';
 
+import firebase from 'firebase';
+
 export default {
 	name: 'Login',
 	mixins: [ validationMixin ],
@@ -48,20 +50,30 @@ export default {
 	methods: {
 		send(e) {
 			e.preventDefault();
-			let toast = this.$toasted.show("Succes! Your account was created!", {
-					theme: "bubble",
-					type: 'info',
-					position: "bottom-right",
-					duration : 5000
-			});
+
+			firebase.auth().createUserWithEmailAndPassword(this.mail, this.password)
+				.then(user => {
+					let toast = this.$toasted.show(`Sucess! Your account was created!`, {
+							theme: "bubble",
+							type: 'info',
+							position: "bottom-right",
+							duration : 5000
+						});
+					this.$router.push('/dashboard')
+				},
+				err => {
+					let toast = this.$toasted.show(`${err.message}`, {
+							theme: "bubble",
+							type: 'info',
+							position: "bottom-right",
+							duration : 5000
+						});
+				})
+
 
 			setTimeout(() => {
 				toast = null;
 			}, 2000);
-
-			setTimeout(() => {
-				this.$router.push('/dashboard');
-			}, 3000);
 		}
 	}
 }
