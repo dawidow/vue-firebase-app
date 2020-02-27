@@ -151,7 +151,7 @@ export default {
 		}
 
 		.details__author {
-			margin: 0;
+			margin: 0 auto 40px;
 		}
 
 		.details__description {
