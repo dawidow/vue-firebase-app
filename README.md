@@ -8,7 +8,7 @@ Welcome to the README of my project. This project aims to show my skills in crea
 
 Test login (you can create a new account but please don't use this option too much).
 
-Login: test@test.com
+Login: test@test.com\
 Password: test123
 
 **The technology used:** <br/>
