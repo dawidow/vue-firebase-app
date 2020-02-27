@@ -11,8 +11,10 @@ Welcome to the README of my project. This project aims to show my skills in crea
 
 Test login (you can create a new account but please don't use this option too much).
 
+```
 Login: test@test.com\
 Password: test123
+```
 
 **The technology used:** <br/>
 HTML5, CSS3 (SCSS, BEM), JS (ES6+), VueJS (Vue-router, Vue-axios, Vuelidate, Vue-toast), Firebase (Auth and Database), Netlify (Hosting) + Postman to handle http requests.
