@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="https://vue-firebase-app.netlify.com/img/logo.c3c8bce3.png" alt="logotype">
+	<a href="https://vue-firebase-app.netlify.com/"><img src="https://vue-firebase-app.netlify.com/img/logo.c3c8bce3.png" alt="logotype"></a>
 	<p align="center">Vue & Firebase APP</p>
 </p>
 
