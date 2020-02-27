@@ -1,7 +1,7 @@
 # Vue-Firebase-APP
 
 ## Demo
-[Check application LIVE](https://vue-firebase-fs.netlify.com/)
+[Check application LIVE](https://vue-firebase-app.netlify.com/)
 
 ## About project
 Welcome to the README of my project. This project aims to show my skills in creating full stack applications. This time unlike Interview application (located on my github profile) it was created using firebase service. I hope you will like this project. Have a nice use.
