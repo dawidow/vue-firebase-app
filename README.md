@@ -1,8 +1,7 @@
 <p align="center">
 	<img src="https://vue-firebase-app.netlify.com/img/logo.c3c8bce3.png" alt="logotype">
+	<p align="center">Vue & Firebase APP</p>
 </p>
-
-# Vue-Firebase-APP
 
 ## Demo
 [Check application LIVE](https://vue-firebase-app.netlify.com/)
